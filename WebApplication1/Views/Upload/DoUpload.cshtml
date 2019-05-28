@@ -1,0 +1,30 @@
+﻿@model AddingSitesToBlackList.AddingSitesToBlackListClass
+
+@{
+    ViewBag.Title = "Космический корабль "+Model.SitesList.Count;
+    Layout = "_Layout";
+}
+
+<h2>Космический корабль @Model.SitesList.Count</h2>
+<img src="Image?id=@Model.SitesList[0]" width=250 />
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <td>Плановый сервис</td>
+            <td style="width: 260px">Фото</td>
+            <td>СТО</td>
+            <td>Описание</td>
+            <td>Следующее ТО</td>
+        </tr>
+    </thead>
+    @foreach (var sm in Model.SitesList)
+    {
+        <tr>
+            <td>@sm.Adress</td>
+            <td><img src="Image?id=@sm.Screenshot" width=250 /></td>
+            <td>@sm.BlockDate</td>
+            <td>@sm.Reason</td>
+            <td>@sm.PublishDate</td>
+        </tr>
+    }
+</table>

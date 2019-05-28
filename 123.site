@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<AddingSitesToBlackListClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SitesList>
+    <Sites>
+      <Violations>
+        <string>Экстремизм</string>
+        <string>Угрозы к свержению власти</string>
+        <string>Нарушение авторских прав</string>
+        <string>Нарушение тайны частной жизни</string>
+        <string>Раскрытие гостайны</string>
+      </Violations>
+      <Adress>12323213123123</Adress>
+      <AdressPubl>3123213213</AdressPubl>
+      <Reason>21312323</Reason>
+      <Violation>Нарушение тайны частной жизни</Violation>
+      <SendingDay>0001-01-01T00:00:00</SendingDay>
+      <PublishDate>0001-01-01T00:00:00</PublishDate>
+      <Status>run</Status>
+      <BlockDate>2019-06-25T20:46:10.291748+05:00</BlockDate>
+    </Sites>
+    <Sites>
+      <Violations>
+        <string>Экстремизм</string>
+        <string>Угрозы к свержению власти</string>
+        <string>Нарушение авторских прав</string>
+        <string>Нарушение тайны частной жизни</string>
+        <string>Раскрытие гостайны</string>
+      </Violations>
+      <Adress>66666</Adress>
+      <AdressPubl>66666</AdressPubl>
+      <Reason>66666</Reason>
+      <SendingDay>0001-01-01T00:00:00</SendingDay>
+      <PublishDate>0001-01-01T00:00:00</PublishDate>
+      <Status>run</Status>
+      <BlockDate>2019-06-25T20:46:17.3181499+05:00</BlockDate>
+    </Sites>
+  </SitesList>
+</AddingSitesToBlackListClass>
