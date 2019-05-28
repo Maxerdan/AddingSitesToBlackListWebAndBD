@@ -36,11 +36,11 @@ namespace WebApplication1
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            var sqlConnectionString = Configuration.GetConnectionString("SpaceFleetDbProvider");
+            var sqlConnectionString = Configuration.GetConnectionString("AddSitesDbProvider"); //SpaceFleetDbProvider
 
-            SpaceFleetDbContext.ConnectionString = sqlConnectionString;
+            AddSitesDBContext.ConnectionString = sqlConnectionString;
 
-            services.AddDbContext<SpaceFleetDbContext>(options =>
+            services.AddDbContext<AddSitesDBContext>(options =>
                 options.UseNpgsql(
                     sqlConnectionString
                 )

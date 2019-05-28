@@ -29,53 +29,40 @@ namespace WebApplication1.Controllers
             using (var stream = file.OpenReadStream())
             {
                 var xs = new XmlSerializer(typeof(AddingSitesToBlackListClass));
-                var ship = (AddingSitesToBlackListClass)xs.Deserialize(stream);
+                var site = (AddingSitesToBlackListClass)xs.Deserialize(stream);
 
 
-                using (var db = new SpaceFleetDbContext())
+                using (var db = new AddSitesDBContext())
                 {
-                    var dbs = new DbSpaceShip();
-                    foreach (var s in ship.SitesList)
+                    var dbs = new DbSites();
+                    foreach (var s in site.SitesList)
                     {
-                        dbs.SitesList = new Collection<DbFlight>();
-                        foreach (var flight in ship.SitesList)
-                        {
-                            dbs.SitesList.Add(new DbFlight()
-                            {
-                                Adress = flight.Adress,
-                                AdressPubl = flight.AdressPubl,
-                            });
-                        }
+                        dbs.SitesList = new Collection<DbListOfSites>();
+                        //foreach (var list in site.SitesList)
+                        //{
+                        //    dbs.SitesList.Add(new DbListOfSites()
+                        //    {
+                        //        Adress = list.Adress,
+                        //        AdressPubl = list.AdressPubl,
+                        //    });
+                        //}
                     }
 
                     db.SpaceShips.Add(dbs);
                     db.SaveChanges();
                 }
-
-
-                return View(ship);
+                return View(site);
             }
         }
 
-        public ActionResult Image(int id)
-        {
-            byte[] foto;
-            using (var db = new SpaceFleetDbContext())
-            {
-                foto = db.Flights.Find(id).Screenshot;
-            }
-            return base.File(foto, "image/jpeg");
-        }
-
-        public ActionResult List()
-        {
-            List<DbSpaceShip> list;
-            using (var db = new SpaceFleetDbContext())
-            {
-                list = db.SpaceShips.Include(s => s.SitesList).ToList();
-            }
-
-            return View(list);
-        }
+        //public ActionResult Image(int id)
+        //{
+        //    //byte[] foto;
+        //    //using (var db = new AddSitesDBContext())
+        //    //{
+        //    //    foto = db.Flights.Find(id).Screenshot;
+        //    //}
+        //    //return base.File(foto, "image/jpeg");
+        //}
     }
 }

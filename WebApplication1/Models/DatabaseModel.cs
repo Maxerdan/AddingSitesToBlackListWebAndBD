@@ -13,54 +13,49 @@ namespace WebApplication1.Models
     namespace DataAccessPostgreSqlProvider
     {
         // >dotnet ef migration add testMigration in AspNet5MultipleProject
-        public class SpaceFleetDbContext : DbContext
+        public class AddSitesDBContext : DbContext
         {
-            public SpaceFleetDbContext()
+            public AddSitesDBContext()
             {
 
                 Database.EnsureCreated();
             }
 
-            public SpaceFleetDbContext(DbContextOptions<SpaceFleetDbContext> options) : base(options)
+            public AddSitesDBContext(DbContextOptions<AddSitesDBContext> options) : base(options)
             {
             }
 
-            public DbSet<DbSpaceShip> SpaceShips { get; set; }
-            public DbSet<DbFlight> Flights { get; set; }
+            public DbSet<DbSites> SpaceShips { get; set; }
+            //public DbSet<DbListOfSites> Flights { get; set; }
             public static string ConnectionString { get; set; }
 
             protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             {
-                optionsBuilder.UseNpgsql(SpaceFleetDbContext.ConnectionString);
+                optionsBuilder.UseNpgsql(AddSitesDBContext.ConnectionString);
 
                 base.OnConfiguring(optionsBuilder);
             }
         }
 
-        /// <summary>
-        /// Корабль
-        /// </summary>
-        public class DbSpaceShip
+        public class DbSites
         {
             [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
             public int Id { get; set; }
             /// <summary>
             /// Список сайтов
             /// </summary>
-            public virtual Collection<DbFlight> SitesList { get; set; }
+            public virtual Collection<DbListOfSites> SitesList { get; set; }
         }
+        
 
-        /// <summary>
-        /// Полёт
-        /// </summary>
-        public class DbFlight
+        public class DbListOfSites
         {
 
             [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
             public int Id { get; set; }
             public int SpaceShipId { get; set; }
             [ForeignKey("SpaceShipId")]
-            public virtual DbSpaceShip SpaceShip { get; set; }
+            public virtual DbSites SpaceShip { get; set; }
             /// <summary>
             /// Адрес сайта
             /// </summary>
