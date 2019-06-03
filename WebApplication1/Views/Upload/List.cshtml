@@ -1,0 +1,39 @@
+﻿@model System.Collections.Generic.List<WebApplication1.Models.DataAccessPostgreSqlProvider.DbSites>
+
+@{
+    ViewBag.Title = "Сайты в обработке";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var ship in Model)
+{
+<div>
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <td>Адрес</td>
+                <td>Адрес публикации</td>
+                <td>Причина блокировки</td>
+                <td>Статус</td>
+                <td>Дата блокировки</td>
+                <td>Комментарий</td>
+                <td>Дата возможной публикации</td>
+            </tr>
+        </thead>
+        @foreach (var sm in ship.SitesList)
+        {
+            <tr>
+                <td>@sm.Adress</td>
+                <td>@sm.AdressPubl</td>
+                <td>@sm.Violation</td>
+                <td>@sm.Stat</td>
+                <td>@sm.BlockDate</td>
+                <td>@sm.Reason</td>
+                <td>@sm.PublishDate</td>
+            </tr>
+        }
+    </table>
+</div>
+}

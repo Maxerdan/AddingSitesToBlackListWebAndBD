@@ -38,14 +38,19 @@ namespace WebApplication1.Controllers
                     foreach (var s in site.SitesList)
                     {
                         dbs.SitesList = new Collection<DbListOfSites>();
-                        //foreach (var list in site.SitesList)
-                        //{
-                        //    dbs.SitesList.Add(new DbListOfSites()
-                        //    {
-                        //        Adress = list.Adress,
-                        //        AdressPubl = list.AdressPubl,
-                        //    });
-                        //}
+                        foreach (var list in site.SitesList)
+                        {
+                            dbs.SitesList.Add(new DbListOfSites()
+                            {
+                                Adress = list.Adress,
+                                AdressPubl = list.AdressPubl,
+                                Violation = list.Violation,
+                                Stat = list.Stat,
+                                BlockDate = list.BlockDate,
+                                Reason = list.Reason,
+                                PublishDate = list.PublishDate,
+                            });
+                        }
                     }
 
                     db.SpaceShips.Add(dbs);
@@ -57,12 +62,23 @@ namespace WebApplication1.Controllers
 
         //public ActionResult Image(int id)
         //{
-        //    //byte[] foto;
-        //    //using (var db = new AddSitesDBContext())
-        //    //{
-        //    //    foto = db.Flights.Find(id).Screenshot;
-        //    //}
-        //    //return base.File(foto, "image/jpeg");
+        //    byte[] foto;
+        //    using (var db = new AddSitesDBContext())
+        //    {
+        //        foto = db.Flights.Find(id).Screenshot;
+        //    }
+        //    return base.File(foto, "image/jpeg");
         //}
+
+        public ActionResult List()
+        {
+            List<DbSites> list;
+            using (var db = new AddSitesDBContext())
+            {
+                list = db.SpaceShips.Include(s => s.SitesList).ToList();
+            }
+
+            return View(list);
+        }
     }
 }
